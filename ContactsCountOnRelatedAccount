@@ -1,0 +1,10 @@
+trigger ContactsCountOnRelatedAccount on Contact (after insert, after update, after delete,after undelete) {
+    if(Trigger.isAfter){
+        if(Trigger.isInsert || Trigger.isUpdate || Trigger.isUndelete){
+            ContactTriggerCountHandler.contactCount(Trigger.new);
+        }if(Trigger.isUpdate || Trigger.isDelete){
+            ContactTriggerCountHandler.contactCount(Trigger.old);
+        }
+    }
+}
+
