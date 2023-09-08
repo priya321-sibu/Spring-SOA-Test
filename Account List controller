@@ -1,0 +1,8 @@
+public with sharing class AccountListController {
+    @AuraEnabled
+    public static List<Account> getAccounts() {
+        return [SELECT Id, Name, Description, Website, Rating FROM Account ORDER BY CreatedDate DESC LIMIT 10];
+        
+    }
+
+}
